@@ -42,9 +42,9 @@ test.describe("Home Page", () => {
 
     await page.getByRole("button", { name: "Sepete Ekle" }).click();
 
-    //• Gelen popupta gösterilen fiyat ile ürünün fiyatı aynı mı karşılaştırılır
-    //• Ürün adedi 1 arttırılır ve ürün adedinin arttığı kontrol edilir
-    //• Fiyatın değiştiği kontrol edilir
+    // Gelen popupta gösterilen fiyat ile ürünün fiyatı aynı mı karşılaştırılır
+    // Ürün adedi 1 arttırılır ve ürün adedinin arttığı kontrol edilir
+    // Fiyatın değiştiği kontrol edilir
 
     //switch frame
 
