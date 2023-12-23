@@ -54,12 +54,22 @@ test.describe("Home Page", () => {
       .click();
     await page.getByText("XXL", { exact: true }).click();
 
+    const fiyat = await page.locator("#indirimliFiyat").textContent();
+    console.log("Fiyat : " + fiyat);
+
     await page.getByRole("button", { name: "Sepete Ekle" }).click();
 
+    const sepetFiyat = await page
+      .frameLocator(".fancybox-iframe")
+      .locator("//span[@class='sepetItemB3_2']").textContent();
+
+    console.log("Sepet Fiyat :" + sepetFiyat);
     // Gelen popupta gösterilen fiyat ile ürünün fiyatı aynı mı karşılaştırılır
     // Ürün adedi 1 arttırılır ve ürün adedinin arttığı kontrol edilir
     // Fiyatın değiştiği kontrol edilir
 
+    //await expect(page.getByTestId('status')).toHaveText('Submitted');
+     
     //switch frame
 
     const sepetiTemizleButton = await page
