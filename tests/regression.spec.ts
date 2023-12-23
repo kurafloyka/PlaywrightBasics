@@ -1,68 +1,45 @@
 import test, { expect } from "@playwright/test";
 import HomePage from "../pages/home.page";
+import ErkekPantalonPage from "../pages/erkek.pantalon.page";
+import KargoPantalonPage from "../pages/kargo.pantalon.page";
 
 test.describe("Home Page", () => {
-  let homePage: HomePage;
+  let _homePage: HomePage;
+  let _erkekPantalonPage: ErkekPantalonPage;
+  let _kargoPantolonPage: KargoPantalonPage;
   test("Open Home Page and verify page", async ({ page }) => {
     //open url
 
-    homePage = new HomePage(page);
+    _homePage = new HomePage(page);
 
-    await homePage.navigateTo();
-    await homePage.verifyCorrectPage();
-    await homePage.closePopupButton.click();
+    await _homePage.navigateTo();
+    await _homePage.verifyCorrectPage();
+    await _homePage._closePopupButton.click();
+    await _homePage._resimliMenuComponent._erkekMenu.hover();
+    await _homePage._resimliMenuComponent._pantolonOption.click();
+
+    _erkekPantalonPage = new ErkekPantalonPage(page);
+    await _erkekPantalonPage.verifyCorrectPage();
+    await _erkekPantalonPage._brandListSelectionComponent.sortBrandListSelection(
+      "Fiyata Göre (Artan)"
+    );
+
+    await _erkekPantalonPage._brandListSelectionComponent.highlightToElement();
+    await _erkekPantalonPage._brandListSelectionComponent._filter.click();
+    await _erkekPantalonPage._filterComponent._kategori.click();
+
+    _kargoPantolonPage = new KargoPantalonPage(page);
+    await _kargoPantolonPage.verifyCorrectPage();
+    await _kargoPantolonPage._randomKargoPantalon.click();
 
 
-    
-    await page.getByRole("link", { name: "ERKEK", exact: true }).hover();
-    await page.getByRole("link", { name: "Pantolon", exact: true }).click();
+    await _kargoPantolonPage._productDetailsComponent._renkOption.click();
+    await _kargoPantolonPage._productDetailsComponent._bedenOption.click();
 
-    await expect(page).toHaveURL("https://www.grimelange.com.tr/pantolon");
-    await expect(
-      page.getByRole("heading", { name: "Erkek Pantolon", exact: true })
-    ).toBeVisible();
-
-    await page
-      .locator("#filterOrderSelect")
-      .selectOption({ label: "Fiyata Göre (Artan)" });
-
-    // Manipulate the DOM and change the color of an element
-    await page.evaluate(() => {
-      // Select an element by its CSS selector and set styles
-      const element = document.getElementById("filterOrderSelect");
-      if (element) {
-        element.style.backgroundColor = "lightblue";
-        element.style.color = "yellow";
-        element.style.border = "border: 10px solid powderblue;";
-        // Add more styles as needed
-      }
-    });
-
-    //Sıralama alanının değiştiği gözlenir
-
-    //await page.pause();
-    await page.getByText("Filtreleme").nth(2).click();
-
-    await page.getByRole("link", { name: "Kargo Pantolon" }).click();
-
-    //soft assertion
-    await expect
-      .soft(page.getByRole("heading", { name: "Kargo Pantolon", exact: true }))
-      .toBeVisible();
-
-    await page
-      .getByRole("link", { name: "CARGO Dokuma Comfort Siyah" })
-      .click();
-
-    await page
-      .getByRole("link", { name: "CARGO  Comfort Bej  Pantolon", exact: true })
-      .click();
-    await page.getByText("XXL", { exact: true }).click();
-
-    const fiyat = await page.locator("#indirimliFiyat").textContent();
+    const fiyat = await _kargoPantolonPage._productDetailsComponent._indirimliFiyat.textContent();
     console.log("Fiyat : " + fiyat);
 
-    await page.getByRole("button", { name: "Sepete Ekle" }).click();
+    await _kargoPantolonPage._productDetailsComponent._addToCartButton.click();
 
     const sepetFiyat = await page
       .frameLocator(".fancybox-iframe")
