@@ -1,14 +1,19 @@
 import test, { expect } from "@playwright/test";
+import HomePage from "../pages/home.page";
 
 test.describe("Home Page", () => {
+  let homePage: HomePage;
   test("Open Home Page and verify page", async ({ page }) => {
     //open url
-    await page.goto("https://www.grimelange.com.tr");
-    await expect(page).toHaveTitle(
-      "Grimelange |  Erkek ve Kadın Giyimde Şıklığın Adresi"
-    );
 
-    await page.getByText("×").click();
+    homePage = new HomePage(page);
+
+    await homePage.navigateTo();
+    await homePage.verifyCorrectPage();
+    await homePage.closePopupButton.click();
+
+
+    
     await page.getByRole("link", { name: "ERKEK", exact: true }).hover();
     await page.getByRole("link", { name: "Pantolon", exact: true }).click();
 
