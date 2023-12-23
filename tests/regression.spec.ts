@@ -13,7 +13,7 @@ test.describe("Home Page", () => {
     await page.getByRole("link", { name: "Pantolon", exact: true }).click();
 
     await expect(page).toHaveURL("https://www.grimelange.com.tr/pantolon");
-    await await page.locator('body').click();expect(
+    await expect(
       page.getByRole("heading", { name: "Erkek Pantolon", exact: true })
     ).toBeVisible();
 
@@ -35,7 +35,7 @@ test.describe("Home Page", () => {
 
     //Sıralama alanının değiştiği gözlenir
 
-    await page.pause();
+    //await page.pause();
     await page.getByText("Filtreleme").nth(2).click();
 
     await page.getByRole("link", { name: "Kargo Pantolon" }).click();
