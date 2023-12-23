@@ -68,6 +68,7 @@ test.describe("Home Page", () => {
     // Ürün adedi 1 arttırılır ve ürün adedinin arttığı kontrol edilir
     // Fiyatın değiştiği kontrol edilir
 
+    expect(fiyat?.trim()).toContain(sepetFiyat?.trim());
     //await expect(page.getByTestId('status')).toHaveText('Submitted');
      
     //switch frame
