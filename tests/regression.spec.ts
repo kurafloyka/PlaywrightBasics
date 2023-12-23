@@ -61,16 +61,27 @@ test.describe("Home Page", () => {
 
     const sepetFiyat = await page
       .frameLocator(".fancybox-iframe")
-      .locator("//span[@class='sepetItemB3_2']").textContent();
+      .locator("//span[@class='sepetItemB3_2']")
+      .textContent();
 
     console.log("Sepet Fiyat :" + sepetFiyat);
-    // Gelen popupta gösterilen fiyat ile ürünün fiyatı aynı mı karşılaştırılır
-    // Ürün adedi 1 arttırılır ve ürün adedinin arttığı kontrol edilir
-    // Fiyatın değiştiği kontrol edilir
 
     expect(fiyat?.trim()).toContain(sepetFiyat?.trim());
-    //await expect(page.getByTestId('status')).toHaveText('Submitted');
-     
+
+    //TODO
+    // Ürün adedi 1 arttırılır ve ürün adedinin arttığı kontrol edilir
+    // Fiyatın değiştiği kontrol edilir
+    const adetInput = page
+      .frameLocator(".fancybox-iframe")
+      .locator("//input[@class='textbox txtSepetAdet']");
+    await adetInput.fill("2");
+
+    const updateCountButton = page
+      .frameLocator(".fancybox-iframe")
+      .getByRole("link", { name: "Güncelle" });
+
+    await updateCountButton.click();
+    await updateCountButton.click();
     //switch frame
 
     const sepetiTemizleButton = await page
@@ -100,6 +111,7 @@ test.describe("Home Page", () => {
         .getByText("Sepetinizde ürün bulunmamaktadır.")
     ).toBeVisible();
 
+    //TODO
     await page
       .frameLocator(".fancybox-iframe")
       .getByText("Sepetinizde ürün bulunmamaktadır.")
