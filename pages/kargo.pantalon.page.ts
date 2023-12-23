@@ -3,6 +3,7 @@ import ResimliMenuComponent from "./components/resimlimenu.component";
 import BrandListComponent from "./components/brandlistselection.component";
 import FilterComponent from "./components/filter.component";
 import ProductDetailsComponent from "./components/product.details.component";
+import SepetComponent from "./components/sepet.component";
 
 class KargoPantalonPage {
   _page: Page;
@@ -12,6 +13,7 @@ class KargoPantalonPage {
   _randomKargoPantalon: Locator;
   _kargoPantolonHeader: Locator;
   _productDetailsComponent: ProductDetailsComponent;
+  _sepetComponent: SepetComponent;
 
   constructor(page: Page) {
     this._page = page;
@@ -26,6 +28,7 @@ class KargoPantalonPage {
       exact: true,
     });
     this._productDetailsComponent = new ProductDetailsComponent(page);
+    this._sepetComponent = new SepetComponent(page);
   }
 
   async verifyCorrectPage() {

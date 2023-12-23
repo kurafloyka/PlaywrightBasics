@@ -41,6 +41,7 @@ test.describe("Home Page", () => {
 
     await _kargoPantolonPage._productDetailsComponent._addToCartButton.click();
 
+    //TODO
     const sepetFiyat = await page
       .frameLocator(".fancybox-iframe")
       .locator("//span[@class='sepetItemB3_2']")
