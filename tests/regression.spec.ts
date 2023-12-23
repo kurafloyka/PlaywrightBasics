@@ -13,7 +13,7 @@ test.describe("Home Page", () => {
     await page.getByRole("link", { name: "Pantolon", exact: true }).click();
 
     await expect(page).toHaveURL("https://www.grimelange.com.tr/pantolon");
-    await expect(
+    await await page.locator('body').click();expect(
       page.getByRole("heading", { name: "Erkek Pantolon", exact: true })
     ).toBeVisible();
 
@@ -21,22 +21,21 @@ test.describe("Home Page", () => {
       .locator("#filterOrderSelect")
       .selectOption({ label: "Fiyata Göre (Artan)" });
 
-
-      // Manipulate the DOM and change the color of an element
-      await page.evaluate(() => {
-        // Select an element by its CSS selector and set styles
-        const element = document.getElementById('filterOrderSelect');
-        if (element) {
-          element.style.backgroundColor = 'lightblue';
-          element.style.color = 'yellow';
-          // Add more styles as needed
-        }
-      });
-
+    // Manipulate the DOM and change the color of an element
+    await page.evaluate(() => {
+      // Select an element by its CSS selector and set styles
+      const element = document.getElementById("filterOrderSelect");
+      if (element) {
+        element.style.backgroundColor = "lightblue";
+        element.style.color = "yellow";
+        element.style.border = "border: 10px solid powderblue;";
+        // Add more styles as needed
+      }
+    });
 
     //Sıralama alanının değiştiği gözlenir
 
-    //await page.pause();
+    await page.pause();
     await page.getByText("Filtreleme").nth(2).click();
 
     await page.getByRole("link", { name: "Kargo Pantolon" }).click();
@@ -94,13 +93,5 @@ test.describe("Home Page", () => {
       .frameLocator(".fancybox-iframe")
       .getByText("Sepetinizde ürün bulunmamaktadır.")
       .highlight();
-
-
-
-
-
   });
 });
-
-
-
