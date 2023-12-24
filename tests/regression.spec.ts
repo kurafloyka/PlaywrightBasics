@@ -7,22 +7,28 @@ test.describe("Home Page", () => {
   let _homePage: HomePage;
   let _erkekPantalonPage: ErkekPantalonPage;
   let _kargoPantolonPage: KargoPantalonPage;
-  test("Open Home Page and verify page", async ({ page }) => {
-    //open url
 
+  test.beforeEach(async ({ page }) => {
     _homePage = new HomePage(page);
     await _homePage.navigateTo();
+    _erkekPantalonPage = new ErkekPantalonPage(page);
+    _kargoPantolonPage = new KargoPantalonPage(page);
+
+  })
+  
+  test("Open Home Page and verify page", async ({ page }) => {
+    
     await _homePage.verifyCorrectPage();
     await _homePage._closePopupButton.click();
     await _homePage._resimliMenuComponent._erkekMenu.hover();
     await _homePage._resimliMenuComponent._pantolonOption.click();
-    _erkekPantalonPage = new ErkekPantalonPage(page);
+    
     await _erkekPantalonPage.verifyCorrectPage();
     await _erkekPantalonPage._brandListSelectionComponent.sortBrandListSelection();
     await _erkekPantalonPage._brandListSelectionComponent.highlightToElement();
     await _erkekPantalonPage._brandListSelectionComponent._filter.click();
     await _erkekPantalonPage._filterComponent._kategori.click();
-    _kargoPantolonPage = new KargoPantalonPage(page);
+    
     await _kargoPantolonPage.verifyCorrectPage();
     await _kargoPantolonPage._randomKargoPantalon.click();
     await _kargoPantolonPage._productDetailsComponent._renkOption.click();
