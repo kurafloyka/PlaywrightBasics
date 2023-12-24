@@ -9,6 +9,7 @@ class ErkekPantalonPage {
   _brandListSelectionComponent: BrandListComponent;
   _pantolonHeader: Locator;
   _filterComponent:FilterComponent;
+  
   constructor(page: Page) {
     this._page = page;
     this._resimliMenuComponent = new ResimliMenuComponent(page);

@@ -5,16 +5,17 @@ class BrandListComponent {
   _page: Page;
   _sorting: Locator;
   _filter: Locator;
+  _sortingListValue:string;
  
   constructor(page: Page) {
     this._page = page;
     this._sorting = page.locator("#filterOrderSelect");
     this._filter = page.getByText("Filtreleme").nth(2);
-    
+    this._sortingListValue='Fiyata Göre (Artan)';
   }
 
-  async sortBrandListSelection(sortValue: string) {
-    await this._sorting.selectOption({ label: sortValue });
+  async sortBrandListSelection() {
+    await this._sorting.selectOption({ label: this._sortingListValue });
   }
 
   //TODO

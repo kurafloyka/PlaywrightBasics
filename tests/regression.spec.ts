@@ -20,9 +20,7 @@ test.describe("Home Page", () => {
 
     _erkekPantalonPage = new ErkekPantalonPage(page);
     await _erkekPantalonPage.verifyCorrectPage();
-    await _erkekPantalonPage._brandListSelectionComponent.sortBrandListSelection(
-      "Fiyata Göre (Artan)"
-    );
+    await _erkekPantalonPage._brandListSelectionComponent.sortBrandListSelection();
 
     await _erkekPantalonPage._brandListSelectionComponent.highlightToElement();
     await _erkekPantalonPage._brandListSelectionComponent._filter.click();
@@ -41,31 +39,22 @@ test.describe("Home Page", () => {
 
     await _kargoPantolonPage._productDetailsComponent._addToCartButton.click();
 
-    //TODO
-    const sepetFiyat = await page
-      .frameLocator(".fancybox-iframe")
-      .locator("//span[@class='sepetItemB3_2']")
-      .textContent();
+    
+    const sepetFiyat = await _kargoPantolonPage._sepetComponent.getsepetFiyati();
 
     console.log("Sepet Fiyat :" + sepetFiyat);
 
     expect(fiyat?.trim()).toContain(sepetFiyat?.trim());
 
     //TODO
-    // Ürün adedi 1 arttırılır ve ürün adedinin arttığı kontrol edilir
     // Fiyatın değiştiği kontrol edilir
-    const adetInput = page
-      .frameLocator(".fancybox-iframe")
-      .locator("//input[@class='textbox txtSepetAdet']");
+    const adetInput = await _kargoPantolonPage._sepetComponent.getAdetInput();
     await adetInput.fill("2");
 
-    const updateCountButton = page
-      .frameLocator(".fancybox-iframe")
-      .getByRole("link", { name: "Güncelle" });
-
+    const updateCountButton = await _kargoPantolonPage._sepetComponent.getGuncelleButton();
     await updateCountButton.click();
     await updateCountButton.click();
-    //switch frame
+    
 
     const sepetiTemizleButton = await page
       .frameLocator(".fancybox-iframe")
@@ -77,7 +66,6 @@ test.describe("Home Page", () => {
       .locator("//button[@class='confirm']");
     await yesButton.click();
 
-    //page.getByRole("button", { name: "Evet",exact:true }).click();
     const sepetiTemizleButton1 = await page
       .frameLocator(".fancybox-iframe")
       .getByText("Sepeti Temizle");
