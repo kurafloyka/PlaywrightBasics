@@ -19,7 +19,6 @@ test.describe("E2E Testing", () => {
   
   test("Add To Product In Card and Remove Product", async ({ page }) => {
     
-
     await _homePage.verifyCorrectPage();
     await _homePage._closePopupButton.click();
     await _homePage._resimliMenuComponent._erkekMenu.hover();
@@ -70,8 +69,7 @@ test.describe("E2E Testing", () => {
 
   //pagedata ++?
   //testdata ++?
-  //before after ++
-  //interface ++
-  //basetest ++
-  //randomdata with enum
+  //randomdata with enum++?
 });
+
+

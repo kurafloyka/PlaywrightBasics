@@ -39,14 +39,14 @@ class ProductDetailsComponent {
    set indirimliFiyat(value: Locator) {
     this._indirimliFiyat = value;
   }
-  private _bedenText: string = Sizes.XXL;
+  private _bedenText: string = this.getRandomEnumValue(Sizes);
   protected get bedenText(): string {
     return this._bedenText;
   }
   protected set bedenText(value: string) {
     this._bedenText = value;
   }
-  private _renkText: string = Renks.Bej;
+  private _renkText: string = this.getRandomEnumValue(Renks);
    get renkText(): string {
     return this._renkText;
   }
@@ -73,7 +73,11 @@ class ProductDetailsComponent {
     this._indirimliFiyat = page.locator("#indirimliFiyat");
   }
 
-  
+   getRandomEnumValue(enumType: any): any {
+    const values = Object.values(enumType);
+    const randomIndex = Math.floor(Math.random() * values.length);
+    return values[randomIndex];
+  }
 }
 
 export default ProductDetailsComponent;
