@@ -30,17 +30,17 @@ test.describe("Home Page", () => {
     await _kargoPantolonPage.verifyCorrectPage();
     await _kargoPantolonPage._randomKargoPantalon.click();
 
-
     await _kargoPantolonPage._productDetailsComponent._renkOption.click();
     await _kargoPantolonPage._productDetailsComponent._bedenOption.click();
 
-    const fiyat = await _kargoPantolonPage._productDetailsComponent._indirimliFiyat.textContent();
+    const fiyat =
+      await _kargoPantolonPage._productDetailsComponent._indirimliFiyat.textContent();
     console.log("Fiyat : " + fiyat);
 
     await _kargoPantolonPage._productDetailsComponent._addToCartButton.click();
 
-    
-    const sepetFiyat = await _kargoPantolonPage._sepetComponent.getsepetFiyati();
+    const sepetFiyat =
+      await _kargoPantolonPage._sepetComponent.getsepetFiyati();
 
     console.log("Sepet Fiyat :" + sepetFiyat);
 
@@ -51,41 +51,28 @@ test.describe("Home Page", () => {
     const adetInput = await _kargoPantolonPage._sepetComponent.getAdetInput();
     await adetInput.fill("2");
 
-    const updateCountButton = await _kargoPantolonPage._sepetComponent.getGuncelleButton();
+    const updateCountButton =
+      await _kargoPantolonPage._sepetComponent.getGuncelleButton();
     await updateCountButton.click();
     await updateCountButton.click();
-    
 
-    const sepetiTemizleButton = await page
-      .frameLocator(".fancybox-iframe")
-      .getByText("Sepeti Temizle");
+    const sepetiTemizleButton =
+      await _kargoPantolonPage._sepetComponent.getSepetiTemizle();
     await sepetiTemizleButton.click();
 
-    const yesButton = await page
-      .frameLocator(".fancybox-iframe")
-      .locator("//button[@class='confirm']");
+    const yesButton = await _kargoPantolonPage._sepetComponent.getYesButton();
     await yesButton.click();
 
-    const sepetiTemizleButton1 = await page
-      .frameLocator(".fancybox-iframe")
-      .getByText("Sepeti Temizle");
-    await sepetiTemizleButton1.click();
-
-    const yesButton1 = await page
-      .frameLocator(".fancybox-iframe")
-      .locator("//button[@class='confirm']");
-    await yesButton1.click();
+    //TODO
+    await sepetiTemizleButton.click();
+    await yesButton.click();
 
     await expect(
-      await page
-        .frameLocator(".fancybox-iframe")
-        .getByText("Sepetinizde ürün bulunmamaktadır.")
+      await _kargoPantolonPage._sepetComponent.getEmptyBasketText()
     ).toBeVisible();
 
     //TODO
-    await page
-      .frameLocator(".fancybox-iframe")
-      .getByText("Sepetinizde ürün bulunmamaktadır.")
+    await (await _kargoPantolonPage._sepetComponent.getEmptyBasketText())
       .highlight();
   });
 });

@@ -7,9 +7,9 @@ class SepetComponent {
   _miktar: string;
   _guncelle: string;
   _miktarGuncelleButton: string;
-  _sepetiTemizle: string = "Sepeti Temizle";
-  _yesButton: string = "//button[@class='confirm']";
-  _emptyBasketText: string = "Sepetinizde ürün bulunmamaktadır.";
+  _sepetiTemizle: string ;
+  _yesButton: string ;
+  _emptyBasketText: string ;
 
   constructor(page: Page) {
     this._page = page;
@@ -17,6 +17,9 @@ class SepetComponent {
     this._sepetFiyat = "//span[@class='sepetItemB3_2']";
     this._miktar = "//input[@class='textbox txtSepetAdet']";
     this._miktarGuncelleButton = "Güncelle";
+    this._sepetiTemizle = "Sepeti Temizle";
+    this._yesButton = "//button[@class='confirm']";
+    this._emptyBasketText = "Sepetinizde ürün bulunmamaktadır.";
   }
 
   async getsepetFiyati() {
@@ -34,16 +37,16 @@ class SepetComponent {
   }
 
 
-  async getSepetiTemizle(){
-
+    async getSepetiTemizle(){
+    return this._frameLocator.getByText(this._sepetiTemizle); 
   }
 
   async getYesButton(){
-
+    return this._frameLocator.locator(this._yesButton);
   }
 
   async getEmptyBasketText(){
-    
+    return this._frameLocator.getByText(this._emptyBasketText);
   }
 }
 
