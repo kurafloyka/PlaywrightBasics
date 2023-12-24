@@ -23,7 +23,7 @@ class ProductDetailsComponent {
     this._indirimliFiyat = page.locator("#indirimliFiyat");
   }
 
-  async verifyPrice() {}
+  
 }
 
 export default ProductDetailsComponent;
