@@ -23,7 +23,7 @@ class ErkekPantalonPage {
 
   async verifyCorrectPage() {
     await expect(this._page).toHaveURL(
-      "https://www.grimelange.com.tr/pantolon"
+      "/pantolon"
     );
     await expect(this._pantolonHeader).toBeVisible();
   }
