@@ -2,6 +2,7 @@ import test, { expect } from "@playwright/test";
 import HomePage from "../pages/home.page";
 import ErkekPantalonPage from "../pages/erkek.pantalon.page";
 import KargoPantalonPage from "../pages/kargo.pantalon.page";
+import { Sizes } from "../pages/data/size";
 
 test.describe("E2E Testing", () => {
   let _homePage: HomePage;
@@ -18,6 +19,7 @@ test.describe("E2E Testing", () => {
   
   test("Add To Product In Card and Remove Product", async ({ page }) => {
     
+
     await _homePage.verifyCorrectPage();
     await _homePage._closePopupButton.click();
     await _homePage._resimliMenuComponent._erkekMenu.hover();

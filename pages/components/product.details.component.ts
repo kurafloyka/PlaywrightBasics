@@ -1,4 +1,6 @@
 import { Page, Locator, expect } from "@playwright/test";
+import { Sizes } from "../data/size";
+import { Renks } from "../data/renk";
 
 class ProductDetailsComponent {
   private _page: Page;
@@ -37,14 +39,14 @@ class ProductDetailsComponent {
    set indirimliFiyat(value: Locator) {
     this._indirimliFiyat = value;
   }
-  private _bedenText: string = "XXL";
+  private _bedenText: string = Sizes.XXL;
   protected get bedenText(): string {
     return this._bedenText;
   }
   protected set bedenText(value: string) {
     this._bedenText = value;
   }
-  private _renkText: string = "Bej";
+  private _renkText: string = Renks.Bej;
    get renkText(): string {
     return this._renkText;
   }
