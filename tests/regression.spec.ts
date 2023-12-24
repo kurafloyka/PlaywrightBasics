@@ -31,12 +31,12 @@ test.describe("E2E Testing", () => {
     
     await _kargoPantolonPage.verifyCorrectPage();
     await _kargoPantolonPage._randomKargoPantalon.click();
-    await _kargoPantolonPage._productDetailsComponent._renkOption.click();
-    await _kargoPantolonPage._productDetailsComponent._bedenOption.click();
+    await _kargoPantolonPage._productDetailsComponent.renkOption.click();
+    await _kargoPantolonPage._productDetailsComponent.bedenOption.click();
     const fiyat =
-      await _kargoPantolonPage._productDetailsComponent._indirimliFiyat.textContent();
+      await _kargoPantolonPage._productDetailsComponent.indirimliFiyat.textContent();
     //console.log("Fiyat : " + fiyat);
-    await _kargoPantolonPage._productDetailsComponent._addToCartButton.click();
+    await _kargoPantolonPage._productDetailsComponent.addToCartButton.click();
     const sepetFiyat =
       await _kargoPantolonPage._sepetComponent.getsepetFiyati();
     //console.log("Sepet Fiyat :" + sepetFiyat);
