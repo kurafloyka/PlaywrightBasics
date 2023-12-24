@@ -1,8 +1,9 @@
 import { Page, Locator, expect } from "@playwright/test";
 import ResimliMenuComponent from "./components/resimlimenu.component";
 import BrandListComponent from "./components/brandlistselection.component";
+import { PageInterface } from "./page.interface";
 
-class HomePage {
+class HomePage implements PageInterface{
   _page: Page;
   _closePopupButton: Locator;
   _resimliMenuComponent: ResimliMenuComponent;

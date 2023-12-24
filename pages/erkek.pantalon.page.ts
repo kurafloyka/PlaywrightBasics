@@ -2,8 +2,9 @@ import { Page, Locator, expect } from "@playwright/test";
 import ResimliMenuComponent from "./components/resimlimenu.component";
 import BrandListComponent from "./components/brandlistselection.component";
 import FilterComponent from "./components/filter.component";
+import { PageInterface } from "./page.interface";
 
-class ErkekPantalonPage {
+class ErkekPantalonPage implements PageInterface {
   _page: Page;
   _resimliMenuComponent: ResimliMenuComponent;
   _brandListSelectionComponent: BrandListComponent;

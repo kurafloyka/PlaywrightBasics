@@ -4,8 +4,9 @@ import BrandListComponent from "./components/brandlistselection.component";
 import FilterComponent from "./components/filter.component";
 import ProductDetailsComponent from "./components/product.details.component";
 import SepetComponent from "./components/sepet.component";
+import { PageInterface } from "./page.interface";
 
-class KargoPantalonPage {
+class KargoPantalonPage implements PageInterface{
   _page: Page;
   _resimliMenuComponent: ResimliMenuComponent;
   _brandListSelectionComponent: BrandListComponent;
