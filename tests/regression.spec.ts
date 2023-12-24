@@ -69,7 +69,7 @@ test.describe("E2E Testing", () => {
   //pagedata
   //testdata
   //before after ++
-  //interface
+  //interface ++
   //basetest ++
-  //randomdata
+  //randomdata with enum
 });

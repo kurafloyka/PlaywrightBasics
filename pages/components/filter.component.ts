@@ -5,6 +5,7 @@ class FilterComponent {
   _kategori: Locator;
   _bedenOption: Locator;
   _renkOption : Locator;
+  
 
   constructor(page: Page) {
     this._page = page;
