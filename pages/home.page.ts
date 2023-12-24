@@ -16,7 +16,7 @@ class HomePage {
   }
 
   async navigateTo() {
-    await this._page.goto("https://www.grimelange.com.tr");
+    await this._page.goto("/");
   }
 
   async verifyCorrectPage() {
