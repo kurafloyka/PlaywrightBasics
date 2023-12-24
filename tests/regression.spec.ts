@@ -3,7 +3,7 @@ import HomePage from "../pages/home.page";
 import ErkekPantalonPage from "../pages/erkek.pantalon.page";
 import KargoPantalonPage from "../pages/kargo.pantalon.page";
 
-test.describe("Home Page", () => {
+test.describe("E2E Testing", () => {
   let _homePage: HomePage;
   let _erkekPantalonPage: ErkekPantalonPage;
   let _kargoPantolonPage: KargoPantalonPage;
@@ -16,7 +16,7 @@ test.describe("Home Page", () => {
 
   })
   
-  test("Open Home Page and verify page", async ({ page }) => {
+  test("Add To Product In Card and Remove Product", async ({ page }) => {
     
     await _homePage.verifyCorrectPage();
     await _homePage._closePopupButton.click();
@@ -35,11 +35,11 @@ test.describe("Home Page", () => {
     await _kargoPantolonPage._productDetailsComponent._bedenOption.click();
     const fiyat =
       await _kargoPantolonPage._productDetailsComponent._indirimliFiyat.textContent();
-    console.log("Fiyat : " + fiyat);
+    //console.log("Fiyat : " + fiyat);
     await _kargoPantolonPage._productDetailsComponent._addToCartButton.click();
     const sepetFiyat =
       await _kargoPantolonPage._sepetComponent.getsepetFiyati();
-    console.log("Sepet Fiyat :" + sepetFiyat);
+    //console.log("Sepet Fiyat :" + sepetFiyat);
     expect(fiyat?.trim()).toContain(sepetFiyat?.trim());
     //TODO
     // Fiyatın değiştiği kontrol edilir
